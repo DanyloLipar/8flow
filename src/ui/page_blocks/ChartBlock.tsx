@@ -47,17 +47,12 @@ export function ChartBlock() {
   const filteredLabels = () => {
     const firstDatasetLength = filterData().datasetOne.length;
     const secondDatasetLength = filterData().datasetTwo.length;
-    let newLabels;
 
-    if (firstDatasetLength > secondDatasetLength) {
-      newLabels = defaultLabels.slice(0, firstDatasetLength);
-    } else if (secondDatasetLength > firstDatasetLength) {
-      newLabels = defaultLabels.slice(0, secondDatasetLength);
-    } else {
-      newLabels = defaultLabels;
+    if (firstDatasetLength >= secondDatasetLength) {
+      return defaultLabels.slice(0, firstDatasetLength);
+    } else if (firstDatasetLength <= secondDatasetLength) {
+      return defaultLabels.slice(0, secondDatasetLength);
     }
-
-    return newLabels;
   };
 
   const handleMinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
